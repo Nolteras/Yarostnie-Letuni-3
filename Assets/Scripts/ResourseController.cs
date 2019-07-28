@@ -11,10 +11,12 @@ public class ResourseController : MonoBehaviour
     public int people;
     public int money;
     public int wood;
+    public int food;
 
 
     void Update()
     {
-        ResText.text = "Поселенцев: " + people + 
+        ResText.text = "Поселенцев: " + people + "   Деньги: " + money + "   Дерево: " + wood +
+            "\r\nЕды: " + food;
     }
 }

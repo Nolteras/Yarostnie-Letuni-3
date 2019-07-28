@@ -7,15 +7,24 @@ public class ShopController : MonoBehaviour
 
     [Header("Drugoe")]
     public GameObject shopPanel;
-    public GameObject AllCells;
+    public GameObject World;
     public AudioClip clip;
     public GameObject camera;
+    public GameObject ResPanel;
     public bool BazaBuild = false;
 
     [Header("Postroiki")]
     public GameObject baza;
     public GameObject wood;
     public GameObject farm;
+
+    [Header("Oshibki")]
+    public GameObject BazaError;
+    public GameObject ResError;
+
+    [Header("Stoimost'")]
+    public GameObject woodSt; //Кнопка, в которой написаны цены для дерева
+    public GameObject farmSt; //Кнопка, в которой написаны цены для фермы
 
 
 
@@ -34,13 +43,15 @@ public class ShopController : MonoBehaviour
 
     public void Cansel() //Вызвав этот метод, закрытие панели
     {
-        shopPanel.SetActive(false);
+        BazaError.SetActive(false); // Отключает сообщения о том, что база есть
+        ResError.SetActive(false);  //Отключает то, что ресурсы есть
+        shopPanel.SetActive(false); // Отключает сам магазин
 
-        for(int i = 0; i < AllCells.transform.childCount; i++) // Перебирает все клетки
+        for (int i = 0; i < World.transform.childCount; i++) // Перебирает все клетки
         {
-            if (AllCells.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true) //Ищет активную
+            if (World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true) //Ищет активную
             {
-                AllCells.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell = false; //Выключает её и останавливает цикл
+                World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell = false; //Выключает её и останавливает цикл
                 break;
             }
         }
@@ -51,15 +62,20 @@ public class ShopController : MonoBehaviour
     {
         if (BazaBuild)
         {
+            BazaError.SetActive(true);
             return;
         }
-        for (int i = 0; i < AllCells.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
+
+
+        for (int i = 0; i < World.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
         {
-            if (AllCells.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && AllCells.transform.GetChild(i).GetComponent<BuildManager>().building == false) //Ищет помеченную клетку
+            if (World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && World.transform.GetChild(i).GetComponent<BuildManager>().building == false) //Ищет помеченную клетку
             {
-                AllCells.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(baza); //Ставит на клетку БАЗУ
+                World.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(baza); //Ставит на клетку БАЗУ
                 BazaBuild = true;
                 AudioSource.PlayClipAtPoint(clip, camera.transform.position);
+                ResPanel.GetComponent<ResourseController>().money -= 25;
+                Cansel();
                 break;
             }
         }
@@ -67,11 +83,19 @@ public class ShopController : MonoBehaviour
 
     public void BuildWood()
     {
-        for (int i = 0; i < AllCells.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
+        if (ResPanel.GetComponent<ResourseController>().money < woodSt.GetComponent<WoodPrise>().CenaMoney && ResPanel.GetComponent<ResourseController>().wood < woodSt.GetComponent<WoodPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
-            if (AllCells.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && AllCells.transform.GetChild(i).GetComponent<BuildManager>().building == false) //Ищет помеченную клетку
+            ResError.SetActive(true);
+            return;
+        }
+        for (int i = 0; i < World.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
+        {
+            if (World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && World.transform.GetChild(i).GetComponent<BuildManager>().building == false) //Ищет помеченную клетку
             {
-                AllCells.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(wood); //Ставит на клетку ДЕРЕВО
+                World.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(wood); //Ставит на клетку ДЕРЕВО
+                ResPanel.GetComponent<ResourseController>().money -= woodSt.GetComponent<WoodPrise>().CenaMoney; //Отнимает цену
+                ResPanel.GetComponent<ResourseController>().wood -= woodSt.GetComponent<WoodPrise>().CenaWood; //Отнимает цену
+                Cansel();
                 break;
             }
         }
@@ -79,11 +103,19 @@ public class ShopController : MonoBehaviour
 
     public void BuildFarm()
     {
-        for (int i = 0; i < AllCells.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
+        if (ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaMoney && ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
-            if (AllCells.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && AllCells.transform.GetChild(i).GetComponent<BuildManager>().building == false) //Ищет помеченную клетку
+            ResError.SetActive(true);
+            return;
+        }
+        for (int i = 0; i < World.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
+        {
+            if (World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && World.transform.GetChild(i).GetComponent<BuildManager>().building == false) //Ищет помеченную клетку
             {
-                AllCells.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(farm); //Ставит на клетку ФЕРМУ
+                World.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(farm); //Ставит на клетку ФЕРМУ
+                ResPanel.GetComponent<ResourseController>().money -= farmSt.GetComponent<FarmPrise>().CenaMoney; //Отнимает цену
+                ResPanel.GetComponent<ResourseController>().wood -= farmSt.GetComponent<FarmPrise>().CenaWood; //Отнимает цену
+                Cansel();
                 break;
             }
         }

@@ -71,7 +71,6 @@ public class BuildManager : MonoBehaviour
         Instantiate(build).transform.position = transform.GetChild(1).position; //Положение постройки списывает положение точки
         building = true; //Здание построено
         ActiveCell = false;//Клетка не активна
-        shopPanel.active = false;
     }
 
 
