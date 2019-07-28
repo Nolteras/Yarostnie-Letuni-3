@@ -73,8 +73,7 @@ public class ShopController : MonoBehaviour
             {
                 World.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(baza); //Ставит на клетку БАЗУ
                 BazaBuild = true;
-                AudioSource.PlayClipAtPoint(clip, camera.transform.position);
-                ResPanel.GetComponent<ResourseController>().money -= 25;
+               //  AudioSource.PlayClipAtPoint(clip, camera.transform.position);
                 Cansel();
                 break;
             }

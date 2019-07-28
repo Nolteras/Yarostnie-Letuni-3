@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 112861787739879398}
   - component: {fileID: 6070834109187777440}
   - component: {fileID: 3375774456803767937}
+  - component: {fileID: 3189374617508152096}
   - component: {fileID: 3481043676002461709}
   m_Layer: 0
   m_Name: Farm
@@ -79,6 +80,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3189374617508152096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3632447726344125409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9170c78d92d1314e8f3a03b3bb419cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &3481043676002461709
 BoxCollider:
   m_ObjectHideFlags: 0
