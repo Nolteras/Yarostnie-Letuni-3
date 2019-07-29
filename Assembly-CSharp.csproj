@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\ResourseController.cs" />
     <Compile Include="Assets\Scripts\Shop Buttons\FarmPrise.cs" />
+    <Compile Include="Assets\Scripts\Shop Buttons\HousePrise.cs" />
     <Compile Include="Assets\Scripts\Shop Buttons\WoodPrise.cs" />
     <Compile Include="Assets\Scripts\ShopController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

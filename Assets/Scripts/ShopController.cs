@@ -17,6 +17,7 @@ public class ShopController : MonoBehaviour
     public GameObject baza;
     public GameObject wood;
     public GameObject farm;
+    public GameObject house;
 
     [Header("Oshibki")]
     public GameObject BazaError;
@@ -25,6 +26,7 @@ public class ShopController : MonoBehaviour
     [Header("Stoimost'")]
     public GameObject woodSt; //Кнопка, в которой написаны цены для дерева
     public GameObject farmSt; //Кнопка, в которой написаны цены для фермы
+    public GameObject houseSt; //Кнопка, в которой написаны цены для дома
 
 
 
@@ -82,7 +84,7 @@ public class ShopController : MonoBehaviour
 
     public void BuildWood()
     {
-        if (ResPanel.GetComponent<ResourseController>().money < woodSt.GetComponent<WoodPrise>().CenaMoney && ResPanel.GetComponent<ResourseController>().wood < woodSt.GetComponent<WoodPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
+        if (ResPanel.GetComponent<ResourseController>().money < woodSt.GetComponent<WoodPrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().wood < woodSt.GetComponent<WoodPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
             ResError.SetActive(true);
             return;
@@ -102,7 +104,7 @@ public class ShopController : MonoBehaviour
 
     public void BuildFarm()
     {
-        if (ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaMoney && ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
+        if (ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
             ResError.SetActive(true);
             return;
@@ -114,6 +116,26 @@ public class ShopController : MonoBehaviour
                 World.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(farm); //Ставит на клетку ФЕРМУ
                 ResPanel.GetComponent<ResourseController>().money -= farmSt.GetComponent<FarmPrise>().CenaMoney; //Отнимает цену
                 ResPanel.GetComponent<ResourseController>().wood -= farmSt.GetComponent<FarmPrise>().CenaWood; //Отнимает цену
+                Cansel();
+                break;
+            }
+        }
+    }
+
+    public void BuildHouse()
+    {
+        if (ResPanel.GetComponent<ResourseController>().money < houseSt.GetComponent<HousePrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().wood < houseSt.GetComponent<HousePrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
+        {
+            ResError.SetActive(true);
+            return;
+        }
+        for (int i = 0; i < World.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
+        {
+            if (World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && World.transform.GetChild(i).GetComponent<BuildManager>().building == false) //Ищет помеченную клетку
+            {
+                World.transform.GetChild(i).GetComponent<BuildManager>().CreateBuilding(house); //Ставит на клетку ДОМ
+                ResPanel.GetComponent<ResourseController>().money -= houseSt.GetComponent<HousePrise>().CenaMoney; //Отнимает цену
+                ResPanel.GetComponent<ResourseController>().wood -= houseSt.GetComponent<HousePrise>().CenaWood; //Отнимает цену
                 Cansel();
                 break;
             }
