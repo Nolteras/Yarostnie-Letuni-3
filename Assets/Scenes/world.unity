@@ -11504,7 +11504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResText: {fileID: 853246118}
-  people: 50
+  people: 0
   money: 100
   wood: 100
   food: 300

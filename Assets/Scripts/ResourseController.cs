@@ -16,7 +16,20 @@ public class ResourseController : MonoBehaviour
 
     void Update()
     {
+
+        if(food < 0)
+        {
+            food = 0;
+        }
+
+        if(people < 0)
+        {
+            people = 0;
+        }
+
+
         ResText.text = "Поселенцев: " + people + "   Деньги: " + money + "   Дерево: " + wood +
             "\r\nЕды: " + food;
+
     }
 }
