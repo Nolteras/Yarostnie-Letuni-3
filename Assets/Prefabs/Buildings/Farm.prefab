@@ -92,6 +92,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9170c78d92d1314e8f3a03b3bb419cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  workmans: 0
+  maxWorkmans: 15
+  HireTime: 2
+  WorkTime: 5
+  FoodEff: 10
 --- !u!65 &3481043676002461709
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class ResourseController : MonoBehaviour
     public int money;
     public int wood;
     public int food;
+    public int workers = 0;
 
 
     void Update()
@@ -27,9 +28,14 @@ public class ResourseController : MonoBehaviour
             people = 0;
         }
 
+        if (workers < 0)
+        {
+            workers = 0;
+        }
+
 
         ResText.text = "Поселенцев: " + people + "   Деньги: " + money + "   Дерево: " + wood +
-            "\r\nЕды: " + food;
+            "\r\nЕды: " + food + "   Работяги: " + workers;
 
     }
 }

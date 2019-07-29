@@ -6187,7 +6187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopPanel: {fileID: 654653510}
   World: {fileID: 161808942}
-  clip: {fileID: 8300000, guid: f9f25bdb933f89348b6e9352e0d3377a, type: 3}
+  clip: {fileID: 8300000, guid: 92f7acbe9648fa743a34583d50fb4c20, type: 3}
   camera: {fileID: 1308503362}
   ResPanel: {fileID: 1294950690}
   BazaBuild: 0
@@ -7670,7 +7670,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041F\u043E\u0441\u0435\u043B\u0435\u043D\u0446\u0435\u0432: 0           \u0414\u0435\u043D\u044C\u0433\u0438:
-    0           \u0414\u0435\u0440\u0435\u0432\u043E: 0\n\n\u0415\u0434\u0430: 0"
+    0           \u0414\u0435\u0440\u0435\u0432\u043E: 0\n\n\u0415\u0434\u0430: 0     \u0420\u0430\u0431\u043E\u0442\u044F\u0433\u0438:
+    0"
 --- !u!222 &853246119
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11508,6 +11509,7 @@ MonoBehaviour:
   money: 100
   wood: 100
   food: 300
+  workers: 0
 --- !u!1 &1308503362
 GameObject:
   m_ObjectHideFlags: 0

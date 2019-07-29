@@ -5,12 +5,13 @@ using UnityEngine;
 public class Baza : MonoBehaviour
 {
 
+
     GameObject resourses;
 
     private void Start()
     {
         resourses = GameObject.FindGameObjectWithTag("ResControl");
-        resourses.GetComponent<ResourseController>().people += 50;
+        resourses.GetComponent<ResourseController>().people += 1;
     }
 
 

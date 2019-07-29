@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Buildings\Baza.cs" />
     <Compile Include="Assets\Scripts\Buildings\Farm.cs" />
     <Compile Include="Assets\Scripts\Buildings\House.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Wood.cs" />
     <Compile Include="Assets\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\ResourseController.cs" />
     <Compile Include="Assets\Scripts\Shop Buttons\FarmPrise.cs" />

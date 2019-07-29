@@ -106,13 +106,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resident: 0
-  maxResident: 15
+  maxResident: 30
   residentAdd: 5
-  product: 100
+  product: 1
   productUse: 3
   residentDead: 8
-  tax: 12
-  taxAdd: 2
+  tax: 50
+  taxAdd: 5
 --- !u!1 &6012417879981275055
 GameObject:
   m_ObjectHideFlags: 0
