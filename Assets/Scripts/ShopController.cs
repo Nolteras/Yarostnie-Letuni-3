@@ -104,7 +104,7 @@ public class ShopController : MonoBehaviour
 
     public void BuildFarm()
     {
-        if (ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
+        if (ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().wood < farmSt.GetComponent<FarmPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
             ResError.SetActive(true);
             return;
