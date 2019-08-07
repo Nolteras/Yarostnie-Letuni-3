@@ -18,15 +18,18 @@ public class ShopController : MonoBehaviour
     public GameObject wood;
     public GameObject farm;
     public GameObject house;
+    public GameObject upgrade;
 
     [Header("Oshibki")]
     public GameObject BazaError;
     public GameObject ResError;
+    public GameObject BazaNeed;
 
     [Header("Stoimost'")]
     public GameObject woodSt; //Кнопка, в которой написаны цены для дерева
     public GameObject farmSt; //Кнопка, в которой написаны цены для фермы
     public GameObject houseSt; //Кнопка, в которой написаны цены для дома
+    public GameObject updateSt; //Кнопка, в которой написаны цены для улучшения
 
 
 
@@ -45,6 +48,7 @@ public class ShopController : MonoBehaviour
 
     public void Cansel() //Вызвав этот метод, закрытие панели
     {
+        BazaNeed.SetActive(false);
         BazaError.SetActive(false); // Отключает сообщения о том, что база есть
         ResError.SetActive(false);  //Отключает то, что ресурсы есть
         shopPanel.SetActive(false); // Отключает сам магазин
@@ -82,8 +86,51 @@ public class ShopController : MonoBehaviour
         }
     }
 
+
+    public void BuildUpdate()
+    {
+        if (BazaBuild == false)
+        {
+            BazaNeed.SetActive(true);
+            return;
+        }
+
+        if (ResPanel.GetComponent<ResourseController>().money < updateSt.GetComponent<UpdatePrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().wood < updateSt.GetComponent<UpdatePrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
+        {
+            ResError.SetActive(true);
+            return;
+        }
+
+
+        for (int i = 0; i < World.transform.childCount; i++) // Перебирает все клетки для того, чтобы узнать, есть ли на клетке постройка
+        {
+            if (World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && World.transform.GetChild(i).GetComponent<BuildManager>().building == true) //Ищет помеченную клетку
+            {
+                if(World.transform.GetChild(i).GetComponent<BuildManager>().ActiveCell == true && World.transform.GetChild(i).GetComponent<BuildManager>().upgrade == false)
+                {   
+                 World.transform.GetChild(i).GetComponent<BuildManager>().setUpdate(upgrade); //Ставит на клетку АПДЕЙТ
+                 ResPanel.GetComponent<ResourseController>().money -= updateSt.GetComponent<UpdatePrise>().CenaMoney; //Отнимает цену
+                 ResPanel.GetComponent<ResourseController>().wood -= updateSt.GetComponent<UpdatePrise>().CenaWood; //Отнимает цену
+                 break;
+                }
+            }
+        }
+        Cansel();
+
+
+    }
+
+
+
     public void BuildWood()
     {
+
+        if(BazaBuild == false)
+        {
+            BazaNeed.SetActive(true);
+            return;
+        }
+
         if (ResPanel.GetComponent<ResourseController>().money < woodSt.GetComponent<WoodPrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().wood < woodSt.GetComponent<WoodPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
             ResError.SetActive(true);
@@ -104,6 +151,14 @@ public class ShopController : MonoBehaviour
 
     public void BuildFarm()
     {
+
+        if (BazaBuild == false)
+        {
+            BazaNeed.SetActive(true);
+            return;
+        }
+
+
         if (ResPanel.GetComponent<ResourseController>().money < farmSt.GetComponent<FarmPrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().wood < farmSt.GetComponent<FarmPrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
             ResError.SetActive(true);
@@ -124,6 +179,14 @@ public class ShopController : MonoBehaviour
 
     public void BuildHouse()
     {
+
+        if (BazaBuild == false)
+        {
+            BazaNeed.SetActive(true);
+            return;
+        }
+
+
         if (ResPanel.GetComponent<ResourseController>().money < houseSt.GetComponent<HousePrise>().CenaMoney || ResPanel.GetComponent<ResourseController>().wood < houseSt.GetComponent<HousePrise>().CenaWood) // Проверяет, хватает ли денег и дерева, заданные в кнопке
         {
             ResError.SetActive(true);

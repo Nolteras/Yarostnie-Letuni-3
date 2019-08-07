@@ -88,11 +88,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3421342795071687649}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 32.447426}
+  m_Center: {x: 0, y: 0, z: -15.723712}
 --- !u!114 &1801456785283897354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,13 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ec090cb6fe5c04494ce37927075c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  people: 0
-  peopleAdd: 1
-  food: 0
-  foodUse: 1
-  peopleDied: 0
-  tax: 0
-  taxAdd: 0
 --- !u!1 &5860403170935951430
 GameObject:
   m_ObjectHideFlags: 0

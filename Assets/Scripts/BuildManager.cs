@@ -9,6 +9,8 @@ public class BuildManager : MonoBehaviour
 
     public bool building;
 
+    public bool upgrade;
+
     public GameObject shopPanel;
 
     public bool water;
@@ -27,7 +29,7 @@ public class BuildManager : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && transform.GetChild(0).GetComponent<Image>().color == Color.green) //Если нажата лкм и ячейка зелёная, то магазин открывается
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (transform.GetChild(0).GetComponent<Image>().color == Color.green || transform.GetChild(0).GetComponent<Image>().color == Color.yellow)) //Если нажата лкм и ячейка зелёная(или желтая), то магазин открывается
         {
             if (!water) //Если воды нет, то магазин открывается
             {
@@ -49,9 +51,14 @@ public class BuildManager : MonoBehaviour
             transform.GetChild(0).GetComponent<Image>().color = Color.blue; //Если это вода, то меняет цвет на синий.
             return;
         }
-        if (building)
+        if (building && !upgrade)
         {
-            transform.GetChild(0).GetComponent<Image>().color = Color.red; //Если есть постройка, то меняет цвет на красный.
+            transform.GetChild(0).GetComponent<Image>().color = Color.yellow; //Если есть постройка, но без апгрейдом, то меняет цвет на желтый.
+            return;
+        }
+        if (building && upgrade)
+        {
+            transform.GetChild(0).GetComponent<Image>().color = Color.red; //Если есть постройка c апгрейдом, то меняет цвет на красный.
             return;
         }
         if( !water || !building)
@@ -73,5 +80,12 @@ public class BuildManager : MonoBehaviour
         ActiveCell = false;//Клетка не активна
     }
 
+
+    public void setUpdate(GameObject upgrade2)
+    {
+        Instantiate(upgrade2).transform.position = transform.GetChild(2).position; //Положение постройки списывает положение точки
+        upgrade = true;
+        ActiveCell = false;
+    }
 
 }

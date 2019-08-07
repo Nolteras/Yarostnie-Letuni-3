@@ -125,4 +125,13 @@ public class House : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Upgrade")
+        {
+            maxResident += 3;
+            tax += 10;
+        }
+    }
+
 }

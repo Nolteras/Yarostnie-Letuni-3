@@ -79,5 +79,13 @@ public class Wood : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Upgrade")
+        {
+            maxWorkmans += 3;
+            WoodEff += 5;
+        }
+    }
 
 }

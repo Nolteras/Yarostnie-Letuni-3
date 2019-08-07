@@ -35,12 +35,12 @@ public class Farm : MonoBehaviour
 
     void Hire()
     {      
-        hireWorkman += 1 * Time.deltaTime;
+        hireWorkman += 1 * Time.deltaTime; //Запускаяет счетчик
         if(hireWorkman >= HireTime)
         {
-            if(resourses.GetComponent<ResourseController>().workers < resourses.GetComponent<ResourseController>().people)
+            if(resourses.GetComponent<ResourseController>().workers < resourses.GetComponent<ResourseController>().people) //Если в поселении рабочих меньше населения
             {
-                if (workmans < maxWorkmans)
+                if (workmans < maxWorkmans) //Если в здании есть место для рабочих
                 {
                     workmans++;
                     resourses.GetComponent<ResourseController>().workers++;
@@ -56,7 +56,7 @@ public class Farm : MonoBehaviour
 
     void ChechForDead()
     {
-        if (resourses.GetComponent<ResourseController>().workers > resourses.GetComponent<ResourseController>().people)
+        if (resourses.GetComponent<ResourseController>().workers > resourses.GetComponent<ResourseController>().people) //Если рабочих больше, чем населения, то убирает рабочего
         {
             workmans--;
             resourses.GetComponent<ResourseController>().workers--;
@@ -71,7 +71,7 @@ public class Farm : MonoBehaviour
             WorkTimer += 1 * Time.deltaTime;
             if (WorkTimer >= WorkTime)
             {
-                for (int i = 0; i <= maxWorkmans; i++)
+                for (int i = 0; i <= maxWorkmans; i++) //Добавляет "работу" за каждого работягу
                 {
                     FoodOutput += FoodEff;
                 }
@@ -80,6 +80,16 @@ public class Farm : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Upgrade")
+        {
+            maxWorkmans += 3;
+            FoodEff += 5;
+        }
+    }
+
 
 
 }
