@@ -6404,7 +6404,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopPanel: {fileID: 654653510}
   World: {fileID: 161808942}
-  clip: {fileID: 8300000, guid: 92f7acbe9648fa743a34583d50fb4c20, type: 3}
   camera: {fileID: 1308503362}
   ResPanel: {fileID: 1294950690}
   BazaBuild: 0
@@ -11917,6 +11916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1dd7a13c0d2f54899bda439ae2efa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 8300000, guid: f9f25bdb933f89348b6e9352e0d3377a, type: 3}
   speed: 120
 --- !u!1 &1311230162
 GameObject:
