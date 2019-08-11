@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ResControl
   - Upgrade
+  - Planet
   layers:
   - Default
   - TransparentFX
