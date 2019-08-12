@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: ed5c41ab36b0394448fb4f0b2ee1564a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aero Matics Stencil
+  fontNames:
+  - Aero Matics Stencil
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a30a6eca675af2248a00028210329bdc, type: 3}
+  - {fileID: 12800000, guid: 164e279b31cd6da4498670e1495558fa, type: 3}
+  - {fileID: 12800000, guid: 018f979baa2632e43825c56621972f86, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

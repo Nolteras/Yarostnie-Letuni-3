@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     Rigidbody2D rigid;
     public int speed;
+    public bool CanMove = true;
     float x;
     float y;
 
@@ -16,7 +17,10 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        movement();
+        if (CanMove)
+        {
+            movement();
+        }
     }
 
 
