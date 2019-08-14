@@ -5,25 +5,24 @@ using UnityEngine.UI;
 
 public class PlanetScript : MonoBehaviour
 {
-
-    GameObject InfoPlanet;
+    [Header("Panels")]
+    public  GameObject InfoPlanet;
+    public GameObject ActionPlanetPort;
+    public GameObject ActionPlanetBar;
+    public GameObject ActionPlanetSquare;
+    public GameObject ActionPlanetAdmin;
     GameObject Player;
-    GameObject ActionPlanetPort;
-    GameObject ActionPlanetBar;
     AudioSource audioPort;
     AudioSource audioBar;
+    AudioSource audioSquare;
+    bool frombar;
 
     void Start()
     {
-        InfoPlanet = GameObject.Find("PlanetState"); //Находит объект, в котором хранится информация о планете
-        ActionPlanetPort = GameObject.Find("PlanetActionPort");
-        ActionPlanetBar = GameObject.Find("PlanetActionBar");
         Player = GameObject.Find("Player");
         audioBar = ActionPlanetBar.GetComponent<AudioSource>();
-        ActionPlanetBar.SetActive(false);
-        InfoPlanet.SetActive(false);
-        ActionPlanetPort.SetActive(false);
         audioPort = Player.transform.GetChild(0).GetComponent<AudioSource>();
+        audioSquare = ActionPlanetSquare.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -61,10 +60,40 @@ public class PlanetScript : MonoBehaviour
 
     public void GoBar()
     {
+        frombar = true;
         audioPort.Stop();
         audioBar.Play();
         ActionPlanetBar.SetActive(true);
-        InfoPlanet.SetActive(false);
+        ActionPlanetSquare.SetActive(false);
+    }
+
+    public void GoSquere()
+    {
+        if (frombar)
+        {
+            audioBar.Stop();
+            audioPort.Play();
+            frombar = false;
+            ActionPlanetBar.SetActive(false);
+        }
+        ActionPlanetPort.SetActive(false);
+        ActionPlanetSquare.SetActive(true);
+    }
+
+    public void GoPort()
+    {
+        if (ActionPlanetAdmin.active)
+        {
+            ActionPlanetAdmin.SetActive(false);
+        }
+        ActionPlanetPort.SetActive(true);
+        ActionPlanetSquare.SetActive(false);
+    }
+
+    public void GoAdministr()
+    {
+        ActionPlanetPort.SetActive(false);
+        ActionPlanetAdmin.SetActive(true);
     }
 
 }
