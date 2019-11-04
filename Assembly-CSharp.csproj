@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\ShopController.cs" />
     <Compile Include="Assets\Scripts\Space\PlanetScript.cs" />
     <Compile Include="Assets\Scripts\Space\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\Spacecrafts\CargoFriend.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Admin/Desktop/Test/StrategyTest/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
